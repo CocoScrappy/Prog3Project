@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<link
+	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap"
+	rel="stylesheet">
+<script src="https://kit.fontawesome.com/4b9ba14b0f.js"
+	crossorigin="anonymous"></script>
+<style>
+body {
+	background-color: #95c2de;
+}
+
+.mainbox {
+	background-color: #95c2de;
+	margin: auto;
+	height: 600px;
+	width: 600px;
+	position: relative;
+	text-align: center;
+}
+
+.err {
+	color: #ffffff;
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 11rem;
+
+}
+
+.far {
+	font-size: 8.5rem;
+	color: #ffffff;
+}
+
+.err2 {
+	color: #ffffff;
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 11rem;
+}
+
+.msg {
+	text-align: center;
+	font-family: 'Nunito Sans', sans-serif;
+	font-size: 1.6rem;
+	position: absolute;
+	left: 16%;
+	top: 45%;
+	width: 75%;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<div class="mainbox">
+		<div>
+			<p>
+				<span class="err">5</span>
+				<i class="far fa-question-circle fa-spin"></i>
+				<span class="far fa-question-circle fa-spin"></span>
+			</p>
+		</div>
+
+		<div class="msg">
+			<p>Opps! This page isn't working.</p>
+			<p>We are currently unable to handle your request.</p>
+			<p>HTTP ERROR 500.</p>
+			<p>
+				Let's go <a th:href="@{/}">home</a> and start again from there.
+			</p>
+		</div>
+	</div>
+</html>

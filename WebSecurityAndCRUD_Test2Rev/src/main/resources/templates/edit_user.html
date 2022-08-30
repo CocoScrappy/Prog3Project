@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign Up Web App</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-md mx-auto mt-3">
+		<div>
+			<p class="h3 mb-2 mx-auto">User Registration Form</p>
+		</div>
+		<div th:if="${#fields.hasErrors('global')}">
+			<h3>Global errors:</h3>
+			<p th:each="err : ${#fields.errors('global')}" th:text="${err}"
+				class="error" />
+		</div>
+		<div class="text-left">
+			<form th:action="@{admin/user/save}" th:object="${user}"
+				method="post" style="max-width: 600px; margin: 0 auto;">
+				<div class="m-3">
+					<div class="form-group row">
+						<label class="col-3 col-form-label">User ID: </label>
+						<div class="col">
+							<input type="text" th:field="*{Id}" class="form-control" readonly />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-3 col-form-label">Full Name: </label>
+						<div class="col">
+							<input type="text" th:field="*{name}" class="form-control" />
+						</div>
+						<div class="col">
+							<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="text-warning"></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-3 col-form-label">Username: </label>
+						<div class="col">
+							<input type="text" th:field="*{username}" class="form-control" />
+						</div>
+						<div class="col">
+							<p th:if="${#fields.hasErrors('username')}"
+								th:errors="*{username}" class="text-warning"></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-3 col-form-label">E-mail: </label>
+						<div class="col">
+							<input type="email" th:field="*{email}" class="form-control" />
+						</div>
+						<div class="col">
+							<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="text-warning"></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-3 col-form-label">Date of Birth: </label>
+						<div class="col">
+							<input type="date" th:field="*{dateOfBirth}" class="form-control"
+								required />
+						</div>
+						<div class="col">
+							<p th:if="${#fields.hasErrors('dateOfBirth')}"
+								th:errors="*{dateOfBirth}" class="text-warning"></p>
+						</div>
+					</div>
+					<div>
+						<button type="submit" class="btnbtn-primary">Sign Up</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
