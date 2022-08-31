@@ -1,0 +1,11 @@
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/* NAV BAR */
+.navbar-brand {
+    font-family: 'Fredoka One', cursive;
+}
+
+.navbar-brand .text-24 {
+    font-size:
+}
