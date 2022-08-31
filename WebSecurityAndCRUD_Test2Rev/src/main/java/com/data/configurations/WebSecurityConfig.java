@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
 import com.data.service.CustomUserDetailsService;
 
 @SuppressWarnings("deprecation")
@@ -49,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/", "/error**" ,"/login", "/users/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().permitAll()
+		.formLogin().defaultSuccessUrl("/index.html", true).permitAll()
 		.and()
 		.logout()
 		.invalidateHttpSession(true)

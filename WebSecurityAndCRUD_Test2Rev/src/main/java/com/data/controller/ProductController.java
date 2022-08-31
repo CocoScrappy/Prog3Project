@@ -27,7 +27,14 @@ public class ProductController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/")
+	@GetMapping("/all-products")
+	public String exploreAllProducts(Model model) {
+		List<Product>  products = service.getAllProducts();
+		model.addAttribute("products", products);
+		return "products";
+	}
+	
+	@GetMapping("/my-products")
 	public String showUserProducts(Model model) {
 		User currentUser = userService.getPrincipalUser();
 		List<Product>  products = service.getProductsByUserId(currentUser.getId());
@@ -47,14 +54,13 @@ public class ProductController {
 	public String saveProduct(@ModelAttribute("product") Product product)
 	{
 		User currentUser = userService.getPrincipalUser();
-		product.setUser(currentUser);
+		product.setOwner(currentUser);
 		service.save(product);
 		return "redirect:/products/";
-		
 	}
 	
 	@RequestMapping("/edit-product/{id}")
-	public ModelAndView showEditProductPage(@PathVariable(name="id") long id)
+	public ModelAndView showEditProductPage(@PathVariable(name="id") Long id)
 	{
 		ModelAndView mav =  new ModelAndView("edit_product");
 		Product product = service.getById(id);
@@ -64,9 +70,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/delete-product/{id}")
-	public String deleteProduct(@PathVariable(name="id") long id)
+	public String deleteProduct(@PathVariable(name="id") Long id)
 	{
-		service.deleteById(id);
+		service.deleteByProductId(id);
 		return "redirect:/products";
 	}
 
