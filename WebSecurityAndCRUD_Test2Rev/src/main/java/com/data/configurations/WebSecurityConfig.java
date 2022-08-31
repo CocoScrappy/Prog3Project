@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/", "/error**" ,"/login", "/users/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().permitAll()
+		.formLogin().defaultSuccessUrl("/", true).permitAll()
 		.and()
 		.logout()
 		.invalidateHttpSession(true)

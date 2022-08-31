@@ -30,7 +30,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long Id;
+	private long id;
 
 	@NotEmpty
 	@Size(min = 5, max = 10)
@@ -79,7 +79,7 @@ public class User {
 			@NotEmpty @Size(min = 6, max = 20) String name, @Email @NotEmpty String email, @Past Date dateOfBirth,
 			String password, @NotEmpty String confirmPassword, Set<Product> products) {
 		super();
-		Id = id;
+		id = id;
 		this.username = username;
 		this.name = name;
 		this.email = email;
@@ -90,11 +90,11 @@ public class User {
 	}
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
-	public void setId(int id) {
-		Id = id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -160,7 +160,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [Id=" + Id + ", username=" + username + ", name=" + name + ", email=" + email + ", dateOfBirth="
+		return "User [Id=" + id + ", username=" + username + ", name=" + name + ", email=" + email + ", dateOfBirth="
 				+ dateOfBirth + ", password=" + password + ", confirmPassword=" + confirmPassword + ", products="
 				+ products + "]";
 	}
