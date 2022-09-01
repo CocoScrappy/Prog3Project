@@ -13,13 +13,13 @@
 <div th:replace="header :: header"></div>
 	<div class="container text-center">
 		<div>
-			<h1>Product Registration</h1>
+			<h1>Share something!</h1>
 		</div>
 		<form th:action="@{/products/save-product}" th:object="${product}"
 			method="post">
 			<div class="m-3">
 				<div class="form-group row">
-					<label class="col-4 col-form-label text-end">Product Name: </label>
+					<label class="col-4 col-form-label text-end">Item name: </label>
 					<div class="col-8">
 						<input type="text" th:field="*{name}" class="form-control"
 							required />
@@ -27,7 +27,7 @@
 				</div>
 
 				<div class="form-group row">
-					<label class="col-4 col-form-label text-end">Product Description: </label>
+					<label class="col-4 col-form-label text-end">Item description: </label>
 					<div class="col-8">
 						<input type="text" th:field="*{specs}" class="form-control" />
 					</div>
