@@ -46,7 +46,7 @@
 				<tbody>
 					<tr th:each="loan: ${loanList}">
 						<td th:text="${loan.product.name}">loan ID</td>
-						<td th:text="${loan.product.user.name}">loan Name</td>
+						<td th:text="${loan.product.owner.name}">loan Name</td>
 						<td th:text="${loan.product.specs}">loan Specs</td>
 						<td th:text="${loan.loanStart}">loan Specs</td>
 						<td th:text="${loan.loanEnd}">loan Specs</td>

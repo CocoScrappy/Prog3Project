@@ -56,7 +56,7 @@ public class User {
 	@NotEmpty
 	private String confirmPassword;
 
-	@OneToMany
+	@OneToMany(mappedBy="owner")
 	private Set<Product> products;
 	
 	

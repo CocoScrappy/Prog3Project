@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.data.model.Product;
 import com.data.model.User;
+import com.data.repository.ProductRepository;
+import com.data.service.LoanService;
 import com.data.service.ProductService;
 import com.data.service.UserService;
 
@@ -22,17 +24,30 @@ import com.data.service.UserService;
 public class ProductController {
 	
 	@Autowired
-	private ProductService service;
+	private ProductService productService;
 	
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/")
-	public String showUserProducts(Model model) {
-		User currentUser = userService.getPrincipalUser();
-		List<Product>  products = service.getProductsByUserId(currentUser.getId());
+	@Autowired
+	private LoanService loanService;
+	
+	
+	//show items from across the platform(no matter whether onloan or not)
+	@GetMapping("/all-products")
+	public String exploreAllProducts(Model model) {
+		List<Product>  products = productService.getAllProducts();
 		model.addAttribute("products", products);
 		return "products";
+	}
+	
+	//show items of the owner provided you have access to user object
+	@GetMapping("/my-products")
+	public String showUserProducts(Model model) {
+		User currentUser = userService.getPrincipalUser();
+		List<Product>  products = productService.getProductsByUserId(currentUser.getId());
+		model.addAttribute("products", products);
+		return "my_products";
 	}
 	
 	@RequestMapping("/new-product")
@@ -43,31 +58,32 @@ public class ProductController {
 		return "new_product";
 	}
 	
+	
+	// owner adding product to the platform
 	@PostMapping("/save-product")
 	public String saveProduct(@ModelAttribute("product") Product product)
 	{
 		User currentUser = userService.getPrincipalUser();
-		product.setUser(currentUser);
-		service.save(product);
-		return "redirect:/products/";
-		
-	}
-	
-	@RequestMapping("/edit-product/{id}")
-	public ModelAndView showEditProductPage(@PathVariable(name="id") long id)
-	{
-		ModelAndView mav =  new ModelAndView("edit_product");
-		Product product = service.getById(id);
-		mav.addObject("product", product);
-		
-		return mav;
+		product.setOwner(currentUser);
+		productService.save(product);
+		return "redirect:/products/all-products";
 	}
 	
 	@RequestMapping("/delete-product/{id}")
-	public String deleteProduct(@PathVariable(name="id") long id)
+	public String deleteProduct(@PathVariable(name="id") Long id)
 	{
-		service.deleteById(id);
-		return "redirect:/products";
+		productService.deleteByProductId(id);
+		return "redirect:/products/my-products";
+	}
+	
+	@RequestMapping("/borrow/{id}")
+	public String borrowProduct(@PathVariable(name="id") Long id)
+	{
+		Product prod=productService.getById(id);
+		prod.setOnLoan(true);
+		productService.save(prod);
+//		productService.setOnLoanStatus(id);
+		return "redirect:/loans/borrow/{id}";
 	}
 
 }

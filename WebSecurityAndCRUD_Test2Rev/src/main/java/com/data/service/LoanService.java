@@ -32,7 +32,7 @@ public class LoanService {
 		Product prod=productService.findById(prod_id).orElse(null);
 		User borrower=userService.getPrincipalUser();
 		borrower.setConfirmPassword("MustNotBeNullToPassValidation");
-		prod.getUser().setConfirmPassword("AlsoMustNotBeEmptyLestYouShouldAngerTheGods");
+		prod.getOwner().setConfirmPassword("AlsoMustNotBeEmptyLestYouShouldAngerTheGods");
 		
 		//gets current date
 		Date loanStart= new java.sql.Date(new java.util.Date().getTime());
@@ -46,7 +46,7 @@ public class LoanService {
 		Loan loan=loanRepo.findById(loanId).orElse(null);
 		loan.setLoanEnd(new Date(new java.util.Date().getTime()));
 		loanRepo.save(loan);
-		return null;
+		return loan;
 	}
 
 }

@@ -32,7 +32,7 @@ public class LoanController {
 	@Autowired
 	ProductService productService;
 
-	@ResponseBody
+	
 	@RequestMapping("/all")
 	public String getLoansByUserId(Model model){
 		List<Loan> loanList=loanService.findAllByBorrowerId();
@@ -49,7 +49,12 @@ public class LoanController {
 	
 	@RequestMapping("/return/{loan_id}")
 	public String returnLoan(@PathVariable(name="loan_id") long loanId) {
+		
 		Loan loan= loanService.findById(loanId);
+		loan.getProduct().setOnLoan(false);
+		Product prod=loan.getProduct();
+		
+		productService.save(prod);
 		
 		return "redirect:/loans/all";
 	}

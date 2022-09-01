@@ -2,9 +2,13 @@ package com.data.model;
 
 
 
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +31,7 @@ public class Loan {
 	private long loanId;
 	@ManyToOne
 	private User borrower;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {PERSIST, MERGE})
 	private Product product;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date loanStart;
