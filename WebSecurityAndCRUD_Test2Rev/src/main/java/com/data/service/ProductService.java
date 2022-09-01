@@ -33,6 +33,8 @@ public class ProductService {
 	public void deleteByProductId(Long id) {
 		repo.deleteByProductId(id);
 	}
-	
-	
+
+	public void setOnLoanStatus(Long id) {
+		repo.setOnLoanStatus(id);
+	}
 }

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.data.model.Product;
 import com.data.model.User;
 import com.data.repository.ProductRepository;
+import com.data.service.LoanService;
 import com.data.service.ProductService;
 import com.data.service.UserService;
 
@@ -28,6 +29,8 @@ public class ProductController {
 	@Autowired
 	private UserService userService;
 	
+//	@Autowired
+//	private LoanService loanService;
 	
 	
 	//show items from across the platform(no matter whether onloan or not)
@@ -54,6 +57,8 @@ public class ProductController {
 		model.addAttribute("product", product);
 		return "new_product";
 	}
+	
+	
 	// owner adding product to the platform
 	@PostMapping("/save-product")
 	public String saveProduct(@ModelAttribute("product") Product product)
@@ -71,6 +76,11 @@ public class ProductController {
 		return "redirect:/products";
 	}
 	
-	
+//	@RequestMapping("/borrow/{id}")
+//	public String borrowProduct(@PathVariable(name="id") Long id)
+//	{
+//		productService.setOnLoanStatus(id);
+//		return "redirect:/loans/borrow/{id}";
+//	}
 
 }

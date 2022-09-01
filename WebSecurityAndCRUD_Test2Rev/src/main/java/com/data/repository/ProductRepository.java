@@ -11,14 +11,17 @@ import com.data.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-	@Query("Select p FROM Product p")
+	@Query("SELECT p FROM Product p")
 	public List<Product> findAll();
 	
-	@Query("Select p FROM User u JOIN u.products p WHERE p = ?1")
+	@Query("SELECT p FROM User u JOIN u.products p WHERE p = ?1")
 	public List<Product> findByUserId(Long userId);
 	
-	@Query("Select p FROM Product p WHERE p.id = ?1")
+	@Query("SELECT p FROM Product p WHERE p.id = ?1")
 	public void deleteByProductId(Long id);
+	
+	@Query("UPDATE Product p SET p.id = ?1")
+	public void setOnLoanStatus(Long id);
 	
 	
 //    "SELECT d FROM Employee e JOIN e.department d", Department.class);

@@ -33,7 +33,6 @@ public class Product {
 	
 	
 	public Product() {
-
 	}
 
 	public Product(Long id, String name, String specs, Boolean onLoan, String photoUrl) {
