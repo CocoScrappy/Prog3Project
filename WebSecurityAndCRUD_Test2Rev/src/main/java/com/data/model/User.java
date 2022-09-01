@@ -1,7 +1,7 @@
 package com.data.model;
 
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,15 +15,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import static com.fasterxml.jackson.databind.type.LogicalType.Map;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
 
 @Entity
 public class User {
@@ -32,44 +33,44 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@NotEmpty
-	@Size(min = 5, max = 10)
+	@NotBlank
+	@Size(min = 5, max = 15)
 	@Column(unique = true)
 	private String username;
 
-	@NotEmpty
-	@Size(min = 6, max = 20)
+	@NotBlank
+	@Size(min = 5, max = 50)
 	private String name;
 
 	@Email
-	@NotEmpty
+	@NotBlank
 	private String email;
 
 	@Past
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfBirth;
 
-//	@Size(min = 8, max = 16)
+	@NotBlank
 	private String password;
 
 	@Transient
-	@NotEmpty
 	private String confirmPassword;
 
 	@OneToMany(mappedBy="owner")
 	private Set<Product> products;
-	
-	
-//	@ManyToOne
-//    @JoinColumn(name="user_id", nullable=false)
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+	@OneToMany(mappedBy="borrower")
+	private Set<Loan> loans;
+
+	@ManyToMany(cascade = {PERSIST, MERGE}, fetch = FetchType.EAGER)
     @JoinTable( 
         name = "users_roles", 
         joinColumns = @JoinColumn(
           name = "user_id", referencedColumnName = "id"), 
         inverseJoinColumns = @JoinColumn(
           name = "role_id", referencedColumnName = "id")) 
-	private Collection<Role> roles = new HashSet<>();
+	private Collection<Role> roles;
 
 	public User() {
 
@@ -77,7 +78,7 @@ public class User {
 
 	public User(long id, @NotEmpty @Size(min = 5, max = 10) String username,
 			@NotEmpty @Size(min = 6, max = 20) String name, @Email @NotEmpty String email, @Past Date dateOfBirth,
-			String password, @NotEmpty String confirmPassword, Set<Product> products) {
+			String password, @NotEmpty String confirmPassword, Set<Product> products, Set<Role> roles) {
 		super();
 		id = id;
 		this.username = username;
@@ -87,6 +88,7 @@ public class User {
 		this.password = password;
 		this.confirmPassword = confirmPassword;
 		this.products = products;
+		this.roles = roles;
 	}
 
 	public long getId() {
@@ -162,7 +164,7 @@ public class User {
 	public String toString() {
 		return "User [Id=" + id + ", username=" + username + ", name=" + name + ", email=" + email + ", dateOfBirth="
 				+ dateOfBirth + ", password=" + password + ", confirmPassword=" + confirmPassword + ", products="
-				+ products + "]";
+				+ products + ", roles=" + roles + "]";
 	}
 
 }

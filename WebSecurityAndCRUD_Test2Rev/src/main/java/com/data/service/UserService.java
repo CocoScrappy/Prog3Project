@@ -28,7 +28,7 @@ public class UserService {
 	@Autowired
 	private RoleRepository roleRepository;
 
-	public void saveUser(User user) throws userAlreadyExistsException {
+	public void registerUser(User user) throws userAlreadyExistsException {
 		
 		if(userRepo.existsByUsername(user.getUsername())) {
 			throw new userAlreadyExistsException("A user with the same username already exists in the database");
@@ -73,7 +73,25 @@ public class UserService {
 		try {
 			return userRepo.findAll();
 		} catch(Exception e) {
-			throw new DatabaseException("unable to access database");
+			throw new DatabaseException("Oops! an error occurred while retrieving the users data");
 		}
+	}
+
+	public void saveNewUser(User user) throws userAlreadyExistsException {
+		if(userRepo.existsByUsername(user.getUsername())) {
+			throw new userAlreadyExistsException("A user with the same username already exists in the database");
+		}
+
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+
+		userRepo.save(user);
+	}
+
+	public void editUser(User user) {
+
+		userRepo.save(user);
+
 	}
 }

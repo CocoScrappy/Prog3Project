@@ -20,9 +20,9 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-//
-//	@ManyToMany(mappedBy = "roles")
-//	private Collection<User> users;
+
+	@ManyToMany(mappedBy = "roles")
+	private Collection<User> users;
 
 	public Role() {
 
@@ -51,7 +51,8 @@ public class Role {
 
 	@Override
 	public String toString() {
-		return "Role [name=" + name + "]";
+//		return "Role [name=" + name + "]";
+		return name + " ";
 	}
 
 }
