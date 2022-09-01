@@ -44,13 +44,18 @@ public class UserController {
 //	Registration processing
 	@PostMapping("/registration")
 	public String processRegister(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
-		
+		System.out.println(user);
 		if (bindingResult.hasErrors()) {
 			return "signup_form";
 		}
 		
 		if(user.getPassword().length() > 16 || user.getPassword().length() < 8) {
 			bindingResult.rejectValue("password", "size.password", "Password should be 8-16 characters long");
+			return "signup_form";
+		}
+
+		if(user.getConfirmPassword().isEmpty()) {
+			bindingResult.rejectValue("confirmPassword", "empty.confirmPassword", "Password Confirmation should not be empty");
 			return "signup_form";
 		}
 //		
@@ -62,19 +67,12 @@ public class UserController {
 		
 		
 		try {
-			userService.saveUser(user);
+			userService.registerUser(user);
 			return "register_success";
 		} catch (Exception e) {
 			bindingResult.rejectValue("username", "exists.username" ,e.getMessage());
 			return "signup_form";
-		}	
-//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//		String encodedPassword = passwordEncoder.encode(user.getPassword());
-//		user.setPassword(encodedPassword);
-//		
-//		userRepo.save(user);
-//		return "register_success";
-
+		}
 	}
 
 }

@@ -11,7 +11,7 @@ import com.data.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-	@Query("Select p FROM Product p WHERE p.user.id = ?1")
+	@Query("Select p FROM Product p WHERE p.user_id = ?1")
 	public List<Product> findByUserId(long userId);
 
 
