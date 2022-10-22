@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>List Users</title>
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/css/bootstrap.min.css" />
@@ -50,8 +50,11 @@
 						<td th:text="${loan.product.specs}">loan Specs</td>
 						<td th:text="${loan.loanStart}">loan Specs</td>
 						<td th:text="${loan.loanEnd}">loan Specs</td>
-						<td><a th:href="@{'/loans/return/' + ${loan.loanId}}">Return Loan</a>
-							</td>
+						</td>
+						<td th:if="${!(loan.loanEnd ne null)}">
+                            <a th:href="@{'/loans/return/' + ${loan.loanId}}">Return item</a>
+                            </td>
+                        <td th:if="${(loan.loanEnd ne null)}">Item returned</td>
 					</tr>
 				</tbody>
 			</table>

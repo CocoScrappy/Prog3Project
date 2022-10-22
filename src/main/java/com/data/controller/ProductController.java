@@ -41,7 +41,7 @@ public class ProductController {
 		return "products";
 	}
 	
-	//show items of the owner provided you have access to user object
+	//show items of the owner
 	@GetMapping("/my-products")
 	public String showUserProducts(Model model) {
 		User currentUser = userService.getPrincipalUser();
@@ -82,7 +82,6 @@ public class ProductController {
 		Product prod=productService.getById(id);
 		prod.setOnLoan(true);
 		productService.save(prod);
-//		productService.setOnLoanStatus(id);
 		return "redirect:/loans/borrow/{id}";
 	}
 

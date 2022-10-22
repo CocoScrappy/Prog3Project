@@ -37,13 +37,13 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(Long id, String name, String specs, Boolean onLoan, String photoUrl) {
-		this.id = id;
-		this.name = name;
-		this.specs = specs;
-		this.onLoan = onLoan;
-		this.photoUrl = photoUrl;
-	}
+//	public Product(Long id, String name, String specs, Boolean onLoan, String photoUrl) {
+//		this.id = id;
+//		this.name = name;
+//		this.specs = specs;
+//		this.onLoan = onLoan;
+//		this.photoUrl = photoUrl;
+//	}
 
 	public Product(Long id, String name, String specs, Boolean onLoan, String photoUrl, User owner) {
 		super();

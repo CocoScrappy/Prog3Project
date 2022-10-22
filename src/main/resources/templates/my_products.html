@@ -43,9 +43,10 @@
 						<td th:text="${product.id}">Product ID</td>
 						<td th:text="${product.name}">Product Name</td>
 						<td th:text="${product.specs}">Product Specs</td>
-						<td>
+						<td th:if="${(product.onLoan ==  false)||(product.onLoan ==  null)}">
 							<a th:href="@{'/products/delete-product/' + ${product.id}}">Delete</a>
 							</td>
+						<td th:if="${(product.onLoan ==  true)}">Borrowed</td>
 					</tr>
 				</tbody>
 			</table>

@@ -12,9 +12,6 @@ import com.data.model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-
-//	@Query("Select p FROM Product p WHERE p.user.id = ?1")
-//	public List<Product> findByUserIdRami(long userId);
 	
 	public Optional<Product> findById(Long id);
 
@@ -25,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value="select * from products where user_id=?1", nativeQuery=true)
 	public List<Product> findByUserId(Long userId);
 	
-	@Modifying
+
 //	@Query("DELETE FROM Product p WHERE p.id = ?1")
 	public void deleteById(Long id);
 	

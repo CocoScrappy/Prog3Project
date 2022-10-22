@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>List Users</title>
 
 	<!-- Bootstrap - CSS only -->
@@ -39,7 +39,7 @@
 					</tr>
 				</thead>
 				<tbody th:each="product: ${products}">
-					<tr th:if="${product.onLoan == false}">
+					<tr th:if="${(product.onLoan ==  false)||(product.onLoan ==  null)}">
 						<td th:text="${product.id}">Product ID</td>
 						<td th:text="${product.name}">Product Name</td>
 						<td th:text="${product.specs}">Product Specs</td>
