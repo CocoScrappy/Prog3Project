@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table.min.css">
 </head>
 <body>
-<div th:replace="header :: header"></div>
+<div th:replace="fragments/header :: header"></div>
 <div class="container text-center">
     <div class="mb-3">
         <form th:action="@{/logout}" method="post">

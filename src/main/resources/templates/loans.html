@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<div th:replace="header :: header"></div>
+<div th:replace="fragments/header :: header"></div>
 	<div class="container text-center">
 		<h1 sec:authorize="isAuthenticated()">
 			<span sec:authentication="principal.name">Username</span>'s loans &nbsp;

@@ -19,8 +19,8 @@ public class ProductService {
 		return repo.findById(Id).get();
 	}
 	
-	public List<Product> getAllProducts() {
-		return repo.findAll();
+	public List<Product> getAllProductsNotOnLoan() {
+		return repo.findAllProductsNotOnLoan();
 	}
 	
 	public List<Product> getProductsByUserId(Long userId) {

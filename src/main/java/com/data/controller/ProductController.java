@@ -36,7 +36,7 @@ public class ProductController {
 	//show items from across the platform(no matter whether onloan or not)
 	@GetMapping("/all-products")
 	public String exploreAllProducts(Model model) {
-		List<Product>  products = productService.getAllProducts();
+		List<Product>  products = productService.getAllProductsNotOnLoan();
 		model.addAttribute("products", products);
 		return "products";
 	}

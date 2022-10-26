@@ -40,17 +40,17 @@ form .row {
 }
 
 /* FOOTER */
-.footer {
+.site-footer {
   background: #F4F4F4;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100px;
   padding: 0px 50px;
   color: rgba(0,0,0,0.5);
   position: absolute;
   bottom: 0;
   width: 100%;
+  height: 100px;
 }
 .footer-links {
   display: flex;
@@ -72,5 +72,14 @@ form .row {
     height: 200px;
     object-fit: cover;
     object-position: center;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 100px;
 }
 

@@ -18,8 +18,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	public Optional<Product> findById(Long id);
 
-	@Query("SELECT p FROM Product p")
-	public List<Product> findAll();
+	@Query("SELECT p FROM Product p Where (onLoan = false) OR (onLoan = null)")
+	public List<Product> findAllProductsNotOnLoan();
 	
 //	@Query("Select p FROM Product p WHERE p.user_id = ?1")
 	@Query(value="select * from products where user_id=?1", nativeQuery=true)
