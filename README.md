@@ -1,14 +1,10 @@
 # Programming3Project
 
-########################
-Admin
-Username: test1
-Password: test
+Admin - Username: test1 // Password: test
 
-User
-Username: ramicha
-Password: testtest
-########################
+User - Username: ramicha // Password: testtest
+
+#####################
 
 Team Name: Gang of Beans 
 
