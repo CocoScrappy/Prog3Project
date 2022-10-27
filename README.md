@@ -1,5 +1,11 @@
 # Programming3Project
 
+Admin - Username: test1 // Password: test
+
+User - Username: ramicha // Password: testtest
+
+#####################
+
 Team Name: Gang of Beans 
 
 Team members: Ali Nehme, Alina Gotcherian, Dmitry Kizyakov, Rami Chawki 
