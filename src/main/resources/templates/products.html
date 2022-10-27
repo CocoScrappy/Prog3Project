@@ -13,16 +13,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <body>
-<<<<<<< HEAD:WebSecurityAndCRUD_Test2Rev/src/main/resources/templates/products.html
-	<div th:replace="fragments/header :: header"></div>
-	<div class="container text-center">
-		<h1 sec:authorize="isAuthenticated()">
-=======
     <div id="page-container">
 	<div th:replace="fragments/header :: header"></div>
     <div id="content-wrap">
         <h1 sec:authorize="isAuthenticated()">
->>>>>>> 913f06daf552bab6b4219e25cfa18ce8939b9816:src/main/resources/templates/products.html
 			What do you need to borrow today, <br/><span sec:authentication="principal.name">Username</span>? &nbsp;
 		</h1>
         <div class="container">
