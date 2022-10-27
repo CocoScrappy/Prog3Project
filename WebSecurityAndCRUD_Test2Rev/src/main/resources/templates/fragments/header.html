@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" th:classappend="${module == 'my_loans' ? 'active' : ''}" href="#" th:href="@{/loans/all}">My Loans</a>
                 </li>
-                <li class="nav-item">
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item">
                     <a class="nav-link" th:classappend="${module == 'users' ? 'active' : ''}" href="#" th:href="@{/admin/users}">Users</a>
                 </li>
             </ul>

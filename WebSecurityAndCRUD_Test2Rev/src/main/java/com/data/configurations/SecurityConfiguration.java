@@ -6,18 +6,17 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.data.service.CustomUserDetailsService;
 
-@SuppressWarnings("deprecation")
-@Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+@Configuration
+public class SecurityConfiguration {
+	
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new CustomUserDetailsService();
@@ -36,30 +35,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return authProvider;
 	}
 
-	@Override
+	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/products/**").hasAnyRole("USER")
-		.antMatchers("/admin/**").hasAnyRole("ADMIN")
-		.antMatchers("/", "/error**" ,"/login", "/users/**", "/images/**", "/css/**", "/js/**").permitAll()
-		.anyRequest().authenticated()
-		.and()
-		.formLogin().defaultSuccessUrl("/", true).permitAll()
-		.and()
-		.logout()
-		.invalidateHttpSession(true)
-		.clearAuthentication(true)
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/")
-		.permitAll();
-
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+		http.authorizeRequests((authorize)->authorize
+				.antMatchers("/products/**").hasAnyRole("USER")
+				.antMatchers("/admin/**").hasAnyRole("ADMIN")
+				.antMatchers("/", "/error**" ,"/login", "/users/**", "/images/**", "/css/**", "/js/**").permitAll()
+				.anyRequest().authenticated())
+		.formLogin((formLogin)->formLogin
+				.loginPage("/login")
+				.defaultSuccessUrl("/", true).permitAll())
+		.logout((logout)->logout.
+				invalidateHttpSession(true)
+				.clearAuthentication(true)
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/")
+				.permitAll());
+		
+		return http.build();
 	}
-
-
-
 }

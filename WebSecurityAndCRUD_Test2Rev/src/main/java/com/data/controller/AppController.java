@@ -12,6 +12,11 @@ public class AppController {
 		return "index";
 	}
 
+//	Login Page
+	@GetMapping("/login")
+	public String viewLogin() {
+		return "login";
+	}
 	
 //	@GetMapping("/users")
 //	public String listUsers(Model model) {

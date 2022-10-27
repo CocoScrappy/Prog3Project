@@ -14,10 +14,10 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:replace="header :: header"></div>
+<div th:replace="fragments/header :: header"></div>
 	<div class="container-md mx-auto mt-3 text-center">
 		<div>
-			<h2 class="h3 mb-2 mx-auto">User Registration Form</h2>
+			<h1 class="h3 mb-2 mx-auto">Join our community</h1>
 		</div>
 		<div class="text-left">
 			<form th:action="@{/users/registration}" th:object="${user}"
@@ -87,12 +87,14 @@
 						</div>
 					</div>
 					<div>
-						<button type="submit" class="btn btn-outline-dark">Sign Up</button>
+						<button type="submit" class="btn btn-dark">Sign up</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
+<div th:replace="fragments/footer :: footer"></div>
+
 <!-- Bootstrap - JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
