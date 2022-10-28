@@ -2,7 +2,7 @@
 
 Admin - Username: test1 // Password: test
 
-User - Username: ramicha // Password: testtest
+User - Username: usertest // Password: testtest
 
 #####################
 
