@@ -11,7 +11,9 @@
 
 </head>
 <body>
+<div id="page-container">
 <div th:replace="fragments/header :: header"></div>
+    <div id="content-wrap">
 <div class="container mx-auto mt-3 text-center">
     <div>
         <p class="h3 mb-2 mx-auto">Edit User</p>
@@ -111,7 +113,14 @@
     </div>
 </div>
 </div>
-<div th:replace="fragments/footer :: footer"></div>
-
+</div>
+<div id="content-wrap2">
+    <div class="row">
+        <div class="col">
+            <div th:replace="fragments/footer :: footer" id="prod_footer"></div>
+        </div>
+    </div>
+</div>
+</div>
 </body>
 </html>

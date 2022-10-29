@@ -11,41 +11,39 @@
 
 </head>
 <body class="bodyClass">
+<div id="page-container">
 	<div th:replace="fragments/header :: header"></div>
-	<div class="container text-center">
-		<div class="banner-content">
-			<img th:src="@{/images/commons-logo.png}" alt="logo" class="d-inline-block align-text-center rounded-circle"/>
-			<p>Oh, hi neighbour! Welcome to our nifty platform to find anything and everything you need -- heck, even more!
-			Imagine having hundreds of friends in your city who would be happy to let you borrow whatever you need at the moment. Pretty neat, right?
+	<div id="content-wrap">
+		<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="banner-content text-center">
+					<img th:src="@{/images/commons-logo.png}" alt="logo" class="d-inline-block align-text-center rounded-circle"/>
+					<p>Oh, hi neighbour! Welcome to our nifty platform to find anything and everything you need -- heck, even more!
+					Imagine having hundreds of friends in your city who would be happy to let you borrow whatever you need at the moment. Pretty neat, right?
 
-			The sharing economy is on the rise and here to stay. Reduce waste and build a stronger community!
-			CommonS is a great place to find like-minded people to share interests and experiences!
+					The sharing economy is on the rise and here to stay. Reduce waste and build a stronger community!
+					CommonS is a great place to find like-minded people to share interests and experiences!
 
-			<a th:href="@{/products/all-products}">Explore</a> sporting goods, tools, toys, fishing gear and more now!</p>
-			<br/>
-			<a th:href="@{/users/register}" class="btn btn-outline-dark btn-lg">Sign me up!</a>
-
-
-<!--		<div sec:authorize="hasAnyAuthority('USER')">-->
-<!--			<h3>-->
-<!--				<a th:href="@{/admin/users}">Users</a>-->
-<!--			</h3>-->
-<!--		</div>-->
-<!--		<div sec:authorize="hasAnyAuthority('USER')">-->
-<!--			<h3>-->
-<!--				<a th:href="@{/products/}">Products</a>-->
-<!--			</h3>-->
-<!--		</div>-->
-<!--		<div>-->
-<!--			<h3>-->
-<!--				<a th:href="@{/users/register}">Register</a>-->
-<!--			</h3>-->
-<!--		</div>-->
+					<a th:href="@{/products/all-products}">Explore</a> sporting goods, tools, toys, fishing gear and more now!</p>
+					<br/>
+					<a th:href="@{/users/register}" class="btn btn-outline-dark btn-lg" id="signupBtn">Sign me up!</a>
+				</div>
+			</div>
 		</div>
-		
+		</div>
 	</div>
-	<div th:replace="fragments/footer :: footer"></div>
+	<div id="content-wrap2">
+		<div class="row">
+			<div class="col">
+				<div th:replace="fragments/footer :: footer" id="prod_footer"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
 	<!-- Bootstrap - JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
 </body>
 </html>
