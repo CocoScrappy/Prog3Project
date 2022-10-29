@@ -15,7 +15,7 @@
 <body>
     <div id="page-container">
 	<div th:replace="fragments/header :: header"></div>
-    <div class="content-wrap">
+    <div id="content-wrap">
         <h1 sec:authorize="isAuthenticated()">
 			What do you need to borrow today, <br/><span sec:authentication="principal.name">Username</span>? &nbsp;
 		</h1>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="content-wrap2">
+    <div id="content-wrap2">
         <div class="row">
             <div class="col">
                 <div th:replace="fragments/footer :: footer" id="prod_footer"></div>
